@@ -7,13 +7,14 @@ const nameForId: Record<string, string> = {
   "425504": "Brennan Sze To",
   "940125": "Yeo Yong Kang",
   "263905": "Emmanuel Oh and Joyce (?)",
-  "895245": "Helena Ng",
+  "895245": "Ma",
   "184195": "Derrick Ng & Andrea Ng|Alexandria Ng & Annabeth Ng",
   "201940": "Bernard Ong and Stephanie Goh",
   "154526": "James Koh & Namuunaa Nadmid",
   "597813": "Ng Yen",
   "410513": "Vaisnavi Subramaniam",
   "395710": "Bernice Tan",
+  "232878": "Mike",
 };
 
 type Params = {
