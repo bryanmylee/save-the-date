@@ -16,31 +16,35 @@ const enum EnvelopeState {
 
 export function EnvelopeView({ name }: EnvelopeViewProps) {
   const [state, setState] = useState(EnvelopeState.Front);
+  const [isClosing, setClosing] = useState(false);
 
   return (
-    <div className="relative overflow-hidden flex flex-col justify-center items-center">
+    <div
+      className="relative overflow-hidden flex flex-col justify-center items-center"
+      onClick={() => {
+        if (state === EnvelopeState.Front) {
+          setState(EnvelopeState.BackClosed);
+        } else if (state === EnvelopeState.BackClosed) {
+          setState(EnvelopeState.BackOpened);
+        } else if (state === EnvelopeState.BackOpened) {
+          setState(EnvelopeState.FullyRevealed);
+        } else {
+          setState(EnvelopeState.Front);
+          setClosing(true);
+          setTimeout(() => {
+            setClosing(false);
+          }, 700);
+        }
+      }}
+    >
       <div className="w-[100cqw] h-[100cqh] perspective-distant cursor-pointer">
         <div
           className={`transition-[transform_color] duration-700 transform-3d ${
             state === EnvelopeState.Front ? "" : "rotate-y-180"
           }`}
         >
-          <Front
-            name={name}
-            onClickEnvelope={() => {
-              setState(EnvelopeState.BackClosed);
-            }}
-          />
-          <Back
-            state={state}
-            onClickEnvelope={() => {
-              if (state === EnvelopeState.BackOpened) {
-                setState(EnvelopeState.FullyRevealed);
-              } else if (state !== EnvelopeState.FullyRevealed) {
-                setState(EnvelopeState.BackOpened);
-              }
-            }}
-          />
+          <Front name={name} />
+          <Back state={state} isClosing={isClosing} />
         </div>
       </div>
 
@@ -63,17 +67,11 @@ export function EnvelopeView({ name }: EnvelopeViewProps) {
 
 type FrontProps = {
   name: string;
-  onClickEnvelope: () => void;
 };
 
-export function Front({ name, onClickEnvelope }: FrontProps) {
+export function Front({ name }: FrontProps) {
   return (
-    <div
-      className="absolute backface-hidden"
-      onClick={() => {
-        onClickEnvelope();
-      }}
-    >
+    <div className="absolute backface-hidden">
       <Image
         src="/envelope-front.png"
         alt=""
@@ -96,17 +94,12 @@ export function Front({ name, onClickEnvelope }: FrontProps) {
 
 type BackProps = {
   state: EnvelopeState;
-  onClickEnvelope: () => void;
+  isClosing: boolean;
 };
 
-export function Back({ state, onClickEnvelope }: BackProps) {
+export function Back({ state, isClosing }: BackProps) {
   return (
-    <div
-      className="absolute rotate-y-180 backface-hidden isolate"
-      onClick={() => {
-        onClickEnvelope();
-      }}
-    >
+    <div className="absolute rotate-y-180 backface-hidden isolate">
       <div
         className={`relative transition-transform duration-700 ${
           state === EnvelopeState.FullyRevealed ? "translate-y-[50%]" : ""
@@ -150,9 +143,11 @@ export function Back({ state, onClickEnvelope }: BackProps) {
           className={`absolute inset-0 transition-transform duration-700 origin-[50%_48%] ${
             state === EnvelopeState.BackOpened ||
             state === EnvelopeState.FullyRevealed
-              ? "rotate-x-180"
+              ? "rotate-x-180 delay-300"
               : ""
-          } ${state === EnvelopeState.FullyRevealed ? "-z-10" : ""}`}
+          } ${
+            state === EnvelopeState.FullyRevealed || isClosing ? "-z-10" : ""
+          }`}
         />
       </div>
       <div className="absolute top-[49%] left-[18%] right-[18%] bottom-[11%] flex items-center justify-center"></div>
