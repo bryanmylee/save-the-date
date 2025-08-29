@@ -1,4 +1,5 @@
 import { headers } from "next/headers";
+import Image from "next/image";
 
 type Props = {
   params: { id: string };
@@ -27,6 +28,14 @@ export default async function Page({ params }: Props) {
   return (
     <div>
       <h1>Welcome {name}</h1>
+
+      <Image
+        src="/save-the-date.png"
+        alt="Save the date! Amanda and Bryan are getting married on 16 Jun 2026 at The Edge, Uluwatu, Bali. Formal invitation to follow"
+        width={2550}
+        height={3300}
+        priority
+      />
     </div>
   );
 }
