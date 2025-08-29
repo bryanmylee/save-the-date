@@ -5,11 +5,11 @@ const nameForId: Record<string, string> = {
 };
 
 type Params = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export async function GET(_: Request, { params }: Params) {
-  const { id } = params;
+  const { id } = await params;
   const name = nameForId[id];
   if (name == null) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
