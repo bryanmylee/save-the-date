@@ -13,9 +13,9 @@ export default function Home() {
         ev.preventDefault();
         router.push(`/${code}`);
       }}
-      className="min-h-screen flex-1 flex flex-col justify-center items-center gap-4"
+      className="min-h-screen flex flex-col justify-center items-center gap-4 font-body"
     >
-      <h1 className="text-2xl font-semibold font-serif">Enter your code</h1>
+      <h1 className="text-2xl font-semibold">Enter your code</h1>
 
       <div className="flex gap-4">
         <input
@@ -29,7 +29,7 @@ export default function Home() {
           className="bg-stone-300 px-4 py-2 border-b-2 border-stone-600 font-mono tracking-widest w-[12ch] text-center"
         />
 
-        <button className="bg-stone-600 text-white px-4 py-2 font-bold border-stone-600">
+        <button className="bg-stone-600 text-white px-4 py-2 font-bold">
           Go
         </button>
       </div>
