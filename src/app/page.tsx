@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -9,26 +8,31 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen flex-1">
-      <h1>Enter your code:</h1>
+    <form
+      onSubmit={(ev) => {
+        ev.preventDefault();
+        router.push(`/${code}`);
+      }}
+      className="min-h-screen flex-1 flex flex-col justify-center items-center gap-4"
+    >
+      <h1 className="text-2xl font-semibold font-serif">Enter your code</h1>
 
-      <form
-        onSubmit={(ev) => {
-          ev.preventDefault();
-          router.push(`/${code}`);
-        }}
-      >
+      <div className="flex gap-4">
         <input
+          autoFocus
           name="code"
           type="text"
           value={code}
           onChange={(ev) => {
             setCode(ev.target.value);
           }}
+          className="bg-stone-300 px-4 py-2 border-b-2 border-stone-600 font-mono tracking-widest w-[12ch] text-center"
         />
 
-        <button>Go</button>
-      </form>
-    </div>
+        <button className="bg-stone-600 text-white px-4 py-2 font-bold border-stone-600">
+          Go
+        </button>
+      </div>
+    </form>
   );
 }
