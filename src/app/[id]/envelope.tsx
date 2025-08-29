@@ -89,6 +89,7 @@ export function Front({ name }: FrontProps) {
         width={2160}
         height={2160}
         priority
+        className="pointer-events-none"
       />
       <div className="absolute top-[49%] left-[18%] right-[18%] bottom-[11%] flex items-center justify-center">
         <div className="leading-tight tracking-tighter">
@@ -124,6 +125,7 @@ export function Back({ state, isClosing }: BackProps) {
           width={2160}
           height={2160}
           priority
+          className="pointer-events-none"
         />
         <div className="absolute top-[-50%] left-[18%] right-[18%] bottom-[11%] flex items-center justify-center p-2 overflow-hidden">
           {/* This container size matches the envelope except on the top where it has an allowance for the envelope. */}
@@ -145,7 +147,7 @@ export function Back({ state, isClosing }: BackProps) {
           width={2160}
           height={2160}
           priority
-          className="absolute inset-0"
+          className="absolute inset-0 pointer-events-none"
         />
         <Image
           src="/envelope-flap.png"
@@ -153,7 +155,7 @@ export function Back({ state, isClosing }: BackProps) {
           width={2160}
           height={2160}
           priority
-          className={`absolute inset-0 transition-transform duration-700 origin-[50%_48%] ${
+          className={`absolute inset-0 pointer-events-none transition-transform duration-700 origin-[50%_48%] ${
             state === EnvelopeState.BackOpened ||
             state === EnvelopeState.FullyRevealed
               ? "rotate-x-180 delay-100"
@@ -164,38 +166,6 @@ export function Back({ state, isClosing }: BackProps) {
         />
       </div>
       <div className="absolute top-[49%] left-[18%] right-[18%] bottom-[11%] flex items-center justify-center"></div>
-      {/*       
-      <Image
-        src="/envelope-back-inner.png"
-        alt=""
-        width={2160}
-        height={2160}
-        priority
-        className="absolute inset-0"
-      />
-      <div className="absolute top-[49%] left-[18%] right-[18%] bottom-[11%] flex items-center justify-center p-2 bg-amber-500/50">
-      </div>
-      <Image
-        src="/envelope-back-outer.png"
-        alt=""
-        width={2160}
-        height={2160}
-        priority
-        className="absolute inset-0"
-      />
-      <Image
-        src="/envelope-flap.png"
-        alt=""
-        width={2160}
-        height={2160}
-        priority
-        className={`absolute inset-0 transition-transform duration-700 origin-[50%_48%] ${
-          state === EnvelopeState.BackOpened ||
-          state === EnvelopeState.FullyRevealed
-            ? "rotate-x-180"
-            : ""
-        } ${state === EnvelopeState.FullyRevealed ? "-z-10" : ""}`}
-      /> */}
     </div>
   );
 }
