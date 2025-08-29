@@ -54,7 +54,7 @@ export function EnvelopeView({ name }: EnvelopeViewProps) {
         }`}
       >
         <div className="flex-1 max-w-7xl mx-auto flex justify-between items-center p-4 border-t border-stone-300">
-          <p className="text-lg">{name}</p>
+          <p className="text-lg">{name.replaceAll("|", ", ")}</p>
 
           <a className="bg-stone-600 text-white px-4 py-2 font-bold">
             Download
@@ -86,7 +86,13 @@ export function Front({ name, onClickEnvelope }: FrontProps) {
         priority
       />
       <div className="absolute top-[49%] left-[18%] right-[18%] bottom-[11%] flex items-center justify-center">
-        <p className="text-[5cqw] font-signature text-center">{name}</p>
+        <div className="leading-tight tracking-tighter">
+          {name.split("|").map((n) => (
+            <p key={n} className="text-[4cqw] font-signature text-center">
+              {n}
+            </p>
+          ))}
+        </div>
       </div>
     </div>
   );
