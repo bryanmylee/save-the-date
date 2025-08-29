@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type EnvelopeViewProps = {
   name: string;
@@ -18,25 +18,32 @@ export function EnvelopeView({ name }: EnvelopeViewProps) {
   const [state, setState] = useState(EnvelopeState.Front);
   const [isClosing, setClosing] = useState(false);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const listener = () => {
+      if (state === EnvelopeState.Front) {
+        setState(EnvelopeState.BackClosed);
+      } else if (state === EnvelopeState.BackClosed) {
+        setState(EnvelopeState.BackOpened);
+      } else if (state === EnvelopeState.BackOpened) {
+        setState(EnvelopeState.FullyRevealed);
+      } else {
+        setState(EnvelopeState.Front);
+        setClosing(true);
+        setTimeout(() => {
+          setClosing(false);
+        }, 700);
+      }
+    };
+    window.addEventListener("click", listener);
+
+    return () => {
+      window.removeEventListener("click", listener);
+    };
+  }, [state]);
+
   return (
-    <div
-      className="relative overflow-hidden flex flex-col justify-center items-center"
-      onClick={() => {
-        if (state === EnvelopeState.Front) {
-          setState(EnvelopeState.BackClosed);
-        } else if (state === EnvelopeState.BackClosed) {
-          setState(EnvelopeState.BackOpened);
-        } else if (state === EnvelopeState.BackOpened) {
-          setState(EnvelopeState.FullyRevealed);
-        } else {
-          setState(EnvelopeState.Front);
-          setClosing(true);
-          setTimeout(() => {
-            setClosing(false);
-          }, 700);
-        }
-      }}
-    >
+    <div className="relative overflow-hidden flex flex-col justify-center items-center">
       <div className="w-[100cqw] h-[100cqh] perspective-distant cursor-pointer">
         <div
           className={`transition-[transform_color] duration-700 transform-3d ${
@@ -53,10 +60,14 @@ export function EnvelopeView({ name }: EnvelopeViewProps) {
           state === EnvelopeState.FullyRevealed ? "opacity-100" : "opacity-0"
         }`}
       >
-        <div className="flex-1 max-w-7xl mx-auto flex justify-between items-center p-4 border-t border-stone-300">
+        <div className="flex-1 max-w-7xl mx-auto flex justify-between items-center p-4 border-t border-stone-300 bg-stone-200">
           <p className="text-lg">{name.replaceAll("|", ", ")}</p>
 
-          <a className="text-white px-4 py-2 font-bold bg-stone-600">
+          <a
+            href="/save-the-date.png"
+            download
+            className="text-white px-4 py-2 font-bold bg-stone-600"
+          >
             Download
           </a>
         </div>
@@ -102,7 +113,9 @@ export function Back({ state, isClosing }: BackProps) {
     <div className="absolute rotate-y-180 backface-hidden isolate">
       <div
         className={`relative transition-transform duration-700 ${
-          state === EnvelopeState.FullyRevealed ? "translate-y-[50%]" : ""
+          state === EnvelopeState.FullyRevealed
+            ? "translate-y-[25vh] scale-125"
+            : ""
         }`}
       >
         <Image
@@ -143,7 +156,7 @@ export function Back({ state, isClosing }: BackProps) {
           className={`absolute inset-0 transition-transform duration-700 origin-[50%_48%] ${
             state === EnvelopeState.BackOpened ||
             state === EnvelopeState.FullyRevealed
-              ? "rotate-x-180 delay-300"
+              ? "rotate-x-180 delay-100"
               : ""
           } ${
             state === EnvelopeState.FullyRevealed || isClosing ? "-z-10" : ""
