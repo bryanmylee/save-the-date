@@ -6,7 +6,7 @@ const nameForId: Record<string, string> = {
   "520784": "Ho Juin Jie and Marianne Terng",
   "425504": "Brennan Sze To",
   "940125": "Yeo Yong Kang",
-  "263905": "Emmanuel Oh and Joyce (?)",
+  "263905": "Emmanuel Oh and Joyce Chng",
   "895245": "Ma",
   "184195": "Derrick Ng & Andrea Ng|Alexandria Ng & Annabeth Ng",
   "201940": "Bernard Ong and Stephanie Goh",
