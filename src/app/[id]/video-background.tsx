@@ -75,10 +75,14 @@ export function VideoBackground({ children }: React.PropsWithChildren) {
       {children}
 
       <div
-        className={`fixed inset-0 z-20 bg-stone-200 transition-opacity duration-1000 delay-500 ${
+        className={`fixed inset-0 z-20 bg-stone-200 flex justify-center items-center transition-opacity duration-1000 delay-500 ${
           isLoaded ? "opacity-0" : "opacity-100"
         }`}
-      ></div>
+      >
+        <div className="loader" />
+      </div>
     </>
   );
 }
+
+/* HTML:  */
