@@ -3,7 +3,9 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 
-export function VideoBackground() {
+export function VideoBackground({ children }: React.PropsWithChildren) {
+  const [isLoaded, setLoaded] = useState(false);
+
   const isLowPowerRef = useRef(false);
   const [showFallback, setShowFallback] = useState(false);
 
@@ -51,20 +53,32 @@ export function VideoBackground() {
         muted
         loop
         playsInline
-        className={`absolute inset-0 object-cover w-screen h-screen opacity-40 ${
-          showFallback ? "hidden" : "block"
+        className={`absolute inset-0 object-cover w-screen h-screen ${
+          showFallback ? "opacity-0" : "opacity-40"
         }`}
       />
+
       <Image
         src="/waves.webp"
         alt="Background wave image"
         width={800}
         height={1061}
         aria-hidden
-        className={`absolute inset-0 object-cover w-screen h-screen opacity-40 blur-sm ${
-          showFallback ? "block" : "hidden"
+        className={`absolute inset-0 object-cover w-screen h-screen ${
+          showFallback ? "opacity-40" : "opacity-0"
         }`}
+        onLoad={() => {
+          setLoaded(true);
+        }}
       />
+
+      {children}
+
+      <div
+        className={`fixed inset-0 z-20 bg-stone-200 transition-opacity duration-1000 delay-500 ${
+          isLoaded ? "opacity-0" : "opacity-100"
+        }`}
+      ></div>
     </>
   );
 }

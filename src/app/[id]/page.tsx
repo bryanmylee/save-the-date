@@ -32,10 +32,11 @@ export default async function Page({ params }: Props) {
 
   return (
     <div className="relative flex min-h-screen">
-      <VideoBackground />
-      <div className="flex-1 flex flex-col justify-center items-center gap-4 font-body max-w-7xl mx-auto @container">
-        <EnvelopeView name={name} />
-      </div>
+      <VideoBackground>
+        <div className="flex-1 flex flex-col justify-center items-center gap-4 font-body max-w-7xl mx-auto @container">
+          <EnvelopeView name={name} />
+        </div>
+      </VideoBackground>
     </div>
   );
 }
