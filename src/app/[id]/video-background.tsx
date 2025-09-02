@@ -12,6 +12,7 @@ export function VideoBackground() {
       autoPlay
       muted
       loop
+      playsInline
       className="absolute inset-0 object-cover w-screen h-screen opacity-40"
     />
   );
