@@ -61,7 +61,7 @@ export function EnvelopeView({ name }: EnvelopeViewProps) {
         }`}
       >
         <div className="flex-1 max-w-7xl mx-auto flex justify-between items-center p-4 border-t border-stone-300 bg-stone-200">
-          <p className="text-lg">{name.replaceAll("|", ", ")}</p>
+          <p className="text-lg">{name.replaceAll("|", " ")}</p>
 
           <a
             href="/save-the-date.png"
@@ -165,7 +165,6 @@ export function Back({ state, isClosing }: BackProps) {
           }`}
         />
       </div>
-      <div className="absolute top-[49%] left-[18%] right-[18%] bottom-[11%] flex items-center justify-center"></div>
     </div>
   );
 }
