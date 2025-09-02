@@ -14,7 +14,7 @@ const nameForId: Record<string, string> = {
   "597813": "Ng Yen",
   "410513": "Vaisnavi Subramaniam",
   "395710": "Bernice Tan",
-  "232878": "Athena Tam ",
+  "232878": "Athena Tam",
 };
 
 type Params = {
