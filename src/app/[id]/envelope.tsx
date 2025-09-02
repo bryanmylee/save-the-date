@@ -56,11 +56,13 @@ export function EnvelopeView({ name }: EnvelopeViewProps) {
       </div>
 
       <div
-        className={`fixed bottom-0 left-0 right-0 transition-opacity duration-700 delay-1000  ${
-          state === EnvelopeState.FullyRevealed ? "opacity-100" : "opacity-0"
+        className={`fixed bottom-0 left-0 right-0 transition-opacity duration-700 border-t border-stone-300 bg-stone-200/50 backdrop-blur-xl ${
+          state === EnvelopeState.FullyRevealed
+            ? "opacity-100 delay-1000"
+            : "opacity-0"
         }`}
       >
-        <div className="flex-1 max-w-7xl mx-auto flex justify-between items-center p-4 border-t border-stone-300 bg-stone-200">
+        <div className="flex-1 max-w-7xl mx-auto flex justify-between items-center p-4">
           <p className="text-lg">{name.replaceAll("|", " ")}</p>
 
           <a
