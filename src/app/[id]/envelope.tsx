@@ -84,7 +84,7 @@ type FrontProps = {
 
 export function Front({ name }: FrontProps) {
   return (
-    <div className="absolute backface-hidden">
+    <div className="absolute backface-hidden transition-transform duration-700 hover:scale-105">
       <Image
         src="/envelope-front.png"
         alt=""
@@ -120,10 +120,10 @@ export function Back({ state, isClosing }: BackProps) {
   return (
     <div className="absolute rotate-y-180 backface-hidden isolate">
       <div
-        className={`relative transition-transform duration-700 ${
+        className={`relative transition-transform duration-700  ${
           state === EnvelopeState.FullyRevealed
-            ? "translate-y-[25vh] scale-125"
-            : ""
+            ? "translate-y-[25vh] scale-125 hover:scale-[130%]"
+            : "hover:scale-105"
         }`}
       >
         <Image
