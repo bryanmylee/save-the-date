@@ -68,7 +68,7 @@ export function EnvelopeView({ name }: EnvelopeViewProps) {
           <a
             href="/save-the-date.png"
             download
-            className="text-white px-4 py-2 font-bold bg-stone-600"
+            className="text-white px-4 py-2 font-bold bg-stone-600 hover:bg-stone-500 hover:scale-105 active:bg-stone-600 transition-[transform_color] duration-300"
           >
             Download
           </a>

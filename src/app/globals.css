@@ -21,10 +21,16 @@ body {
 }
 
 * {
+  @apply select-none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
   :focus {
     @apply outline-none;
   }
   :focus-visible {
-    @apply ring-2 ring-stone-600;
+    @apply ring-2 ring-stone-700;
   }
 }
