@@ -59,7 +59,7 @@ export function VideoBackground({ children }: React.PropsWithChildren) {
       />
 
       <Image
-        src="/waves.webp"
+        src="/waves_static.webp"
         alt="Background wave image"
         width={800}
         height={1061}
