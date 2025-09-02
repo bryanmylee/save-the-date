@@ -11,6 +11,7 @@
   --font-body: var(--font-body);
   --font-mono: var(--font-mono);
   --font-signature: var(--font-signature);
+  --font-geo: var(--font-geo);
 }
 
 body {

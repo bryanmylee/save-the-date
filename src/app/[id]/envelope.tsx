@@ -93,7 +93,7 @@ export function Front({ name }: FrontProps) {
         priority
         className="pointer-events-none"
       />
-      <div className="absolute top-[49%] left-[18%] right-[18%] bottom-[11%] flex items-center justify-center">
+      <div className="absolute top-[49%] left-[18%] right-[18%] bottom-[11%] flex flex-col items-center justify-center gap-4">
         <div className="leading-tight tracking-tighter">
           {name.split("|").map((n) => (
             <p key={n} className="text-[4cqw] font-signature text-center">
@@ -101,6 +101,11 @@ export function Front({ name }: FrontProps) {
             </p>
           ))}
         </div>
+      </div>
+      <div className="absolute top-[75%] left-[18%] right-[18%] bottom-[11%] flex items-center justify-center">
+        <p className="font-geo uppercase opacity-50 text-[1.5cqw] tracking-widest">
+          Tap to open
+        </p>
       </div>
     </div>
   );
@@ -143,14 +148,21 @@ export function Back({ state, isClosing }: BackProps) {
             }`}
           />
         </div>
-        <Image
-          src="/envelope-back-outer.png"
-          alt=""
-          width={2160}
-          height={2160}
-          priority
-          className="absolute inset-0 pointer-events-none"
-        />
+        <div className="absolute inset-0 pointer-events-none">
+          <Image
+            src="/envelope-back-outer.png"
+            alt=""
+            width={2160}
+            height={2160}
+            priority
+            className="absolute inset-0 pointer-events-none"
+          />
+        </div>
+        <div className="absolute top-[75%] left-[18%] right-[18%] bottom-[11%] flex items-center justify-center">
+          <p className="font-geo uppercase opacity-50 text-[1.5cqw] tracking-widest">
+            Tap to open
+          </p>
+        </div>
         <Image
           src="/envelope-flap.png"
           alt=""
